@@ -37,6 +37,7 @@ public class LinkServiceImpl implements LinkService {
   public Link create(String originalUrl) {
     String code = this.linkCodeGenerator.generateLinkCode(5);
     LinkEntity entity = new LinkEntity(code, code, originalUrl);
+    entity = this.linkRepository.insert(entity);
     return this.getLink(entity);
   }
 
