@@ -7,6 +7,7 @@ import com.nicholas.urlshortenerapi.repositories.LinkRepository;
 import com.nicholas.urlshortenerapi.repositories.entities.LinkEntity;
 import com.nicholas.urlshortenerapi.services.LinkCodeGenerator;
 import com.nicholas.urlshortenerapi.services.LinkService;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class LinkServiceImpl implements LinkService {
   }
 
   @Override
+  @Retry(name = "retryLinkCodeDuplicate")
   public Link create(String originalUrl) {
     String code = this.linkCodeGenerator.generateLinkCode(5);
     LinkEntity entity = new LinkEntity(code, code, originalUrl);
