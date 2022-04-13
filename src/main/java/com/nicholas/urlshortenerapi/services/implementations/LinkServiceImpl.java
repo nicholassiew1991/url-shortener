@@ -8,6 +8,7 @@ import com.nicholas.urlshortenerapi.repositories.entities.LinkEntity;
 import com.nicholas.urlshortenerapi.services.LinkCodeGenerator;
 import com.nicholas.urlshortenerapi.services.LinkService;
 import io.github.resilience4j.retry.annotation.Retry;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -35,6 +36,7 @@ public class LinkServiceImpl implements LinkService {
   }
 
   @Override
+  @Cacheable(cacheNames = "links", cacheManager = "cacheManager", key = "#a0", unless = "#result == null")
   public Optional<Link> getLink(String code) {
     return this.linkRepository.findById(code).map(x -> this.linkMapper.createLinkFromLinkEntity(x, appConfigurations.getDomain()));
   }
