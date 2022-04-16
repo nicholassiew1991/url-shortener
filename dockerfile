@@ -14,4 +14,4 @@ COPY --from=build /jre /jre
 COPY --from=build /code/target/url-shortener-api-0.0.1.jar /app/
 
 EXPOSE 8080
-ENTRYPOINT [ "/jre/bin/java", "-jar", "-Dspring.profiles.active=dev", "/app/url-shortener-api-0.0.1.jar"]
+ENTRYPOINT [ "/jre/bin/java", "-jar", "/app/url-shortener-api-0.0.1.jar"]
