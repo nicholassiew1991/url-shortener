@@ -9,7 +9,7 @@
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
-  <groupId>com.nicholas</groupId>
+  <groupId>io.github.nicholassiew1991</groupId>
   <artifactId>url-shortener-api</artifactId>
   <version>0.0.1</version>
   <name>url-shortener-api</name>
