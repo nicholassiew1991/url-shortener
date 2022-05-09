@@ -11,6 +11,8 @@ import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Optional;
 
 @Service
@@ -45,7 +47,7 @@ public class LinkServiceImpl implements LinkService {
   @Retry(name = "retryLinkCodeDuplicate")
   public Link create(String originalUrl) {
     String code = this.linkCodeGenerator.generateLinkCode(5);
-    LinkEntity entity = new LinkEntity(code, code, originalUrl);
+    LinkEntity entity = new LinkEntity(code, code, originalUrl, LocalDateTime.now(ZoneOffset.UTC));
     entity = this.linkRepository.insert(entity);
     return this.linkMapper.createLinkFromLinkEntity(entity, appConfigurations.getDomain());
   }
