@@ -5,13 +5,15 @@ import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 
+import java.util.Collection;
+
 @Getter
 @AllArgsConstructor
 @ConstructorBinding
 @ConfigurationProperties(prefix = "app.cors")
 public class AppCorsProperties {
 
-  private String allowedOrigins;
+  private String[] allowedOrigins;
 
-  private String allowedMethods;
+  private String[] allowedMethods;
 }
