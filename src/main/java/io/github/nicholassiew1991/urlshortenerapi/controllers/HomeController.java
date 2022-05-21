@@ -1,6 +1,6 @@
 package io.github.nicholassiew1991.urlshortenerapi.controllers;
 
-import io.github.nicholassiew1991.urlshortenerapi.models.Link;
+import io.github.nicholassiew1991.urlshortenerapi.models.RedirectLinkModel;
 import io.github.nicholassiew1991.urlshortenerapi.services.LinkService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
@@ -24,10 +23,9 @@ public class HomeController {
   }
 
   @GetMapping("/{code}")
-  public RedirectView redirect(@PathVariable String code, HttpServletRequest httpServletRequest) {
+  public RedirectView redirect(@PathVariable String code) {
 
-    String domain = String.format("%s://%s", httpServletRequest.getHeader("x-forwarded-scheme"), httpServletRequest.getHeader("x-forwarded-host"));
-    Optional<Link> optionalLink = this.linkService.getLink(code, domain);
+    Optional<RedirectLinkModel> optionalLink = this.linkService.getLink(code);
 
     if (optionalLink.isEmpty() == true) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);

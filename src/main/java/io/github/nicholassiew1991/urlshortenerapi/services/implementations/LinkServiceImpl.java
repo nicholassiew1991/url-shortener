@@ -2,6 +2,7 @@ package io.github.nicholassiew1991.urlshortenerapi.services.implementations;
 
 import io.github.nicholassiew1991.urlshortenerapi.mappers.LinkMapper;
 import io.github.nicholassiew1991.urlshortenerapi.models.Link;
+import io.github.nicholassiew1991.urlshortenerapi.models.RedirectLinkModel;
 import io.github.nicholassiew1991.urlshortenerapi.repositories.LinkRepository;
 import io.github.nicholassiew1991.urlshortenerapi.repositories.entities.LinkEntity;
 import io.github.nicholassiew1991.urlshortenerapi.services.LinkCodeGenerator;
@@ -34,8 +35,8 @@ public class LinkServiceImpl implements LinkService {
 
   @Override
   @Cacheable(cacheNames = "links", cacheManager = "cacheManager", key = "#a0", unless = "#result == null")
-  public Optional<Link> getLink(String code, String domain) {
-    return this.linkRepository.findById(code).map(x -> this.linkMapper.createLinkFromLinkEntity(x, domain));
+  public Optional<RedirectLinkModel> getLink(String code) {
+    return this.linkRepository.findById(code).map(x -> new RedirectLinkModel(x.getCode(), x.getOriginalUrl()));
   }
 
   @Override
