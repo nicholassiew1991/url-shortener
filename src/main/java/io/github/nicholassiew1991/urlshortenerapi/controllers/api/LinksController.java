@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
@@ -22,9 +23,12 @@ public class LinksController {
   }
 
   @PostMapping("")
-  public ResponseEntity<?> createLink(@RequestBody Map<String, Object> map) {
+  public ResponseEntity<?> createLink(@RequestBody Map<String, Object> map, HttpServletRequest httpServletRequest) {
+
+    String domain = String.format("%s://%s", httpServletRequest.getHeader("x-forwarded-scheme"), httpServletRequest.getHeader("x-forwarded-host"));
+
     String url = map.get("url").toString();
-    Link link = this.linkService.create(url);
+    Link link = this.linkService.create(url, domain);
     return new ResponseEntity<>(link, HttpStatus.CREATED);
   }
 }

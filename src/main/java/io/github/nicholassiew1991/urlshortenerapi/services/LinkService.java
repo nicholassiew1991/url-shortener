@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface LinkService {
 
-  Optional<Link> getLink(String code);
+  Optional<Link> getLink(String code, String domain);
 
-  Link create(String originalUrl);
+  Link create(String originalUrl, String domain);
 }

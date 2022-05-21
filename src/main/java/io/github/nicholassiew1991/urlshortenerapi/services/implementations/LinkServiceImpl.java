@@ -1,6 +1,5 @@
 package io.github.nicholassiew1991.urlshortenerapi.services.implementations;
 
-import io.github.nicholassiew1991.urlshortenerapi.configurations.AppConfigurations;
 import io.github.nicholassiew1991.urlshortenerapi.mappers.LinkMapper;
 import io.github.nicholassiew1991.urlshortenerapi.models.Link;
 import io.github.nicholassiew1991.urlshortenerapi.repositories.LinkRepository;
@@ -24,31 +23,27 @@ public class LinkServiceImpl implements LinkService {
 
   private final LinkMapper linkMapper;
 
-  private final AppConfigurations appConfigurations;
-
   public LinkServiceImpl(
     LinkRepository linkRepository,
     LinkCodeGenerator linkCodeGenerator,
-    LinkMapper linkMapper,
-    AppConfigurations appConfigurations) {
+    LinkMapper linkMapper) {
     this.linkRepository = linkRepository;
     this.linkCodeGenerator = linkCodeGenerator;
     this.linkMapper = linkMapper;
-    this.appConfigurations = appConfigurations;
   }
 
   @Override
   @Cacheable(cacheNames = "links", cacheManager = "cacheManager", key = "#a0", unless = "#result == null")
-  public Optional<Link> getLink(String code) {
-    return this.linkRepository.findById(code).map(x -> this.linkMapper.createLinkFromLinkEntity(x, appConfigurations.getDomain()));
+  public Optional<Link> getLink(String code, String domain) {
+    return this.linkRepository.findById(code).map(x -> this.linkMapper.createLinkFromLinkEntity(x, domain));
   }
 
   @Override
   @Retry(name = "retryLinkCodeDuplicate")
-  public Link create(String originalUrl) {
+  public Link create(String originalUrl, String domain) {
     String code = this.linkCodeGenerator.generateLinkCode(5);
     LinkEntity entity = new LinkEntity(code, code, originalUrl, LocalDateTime.now(ZoneOffset.UTC));
     entity = this.linkRepository.insert(entity);
-    return this.linkMapper.createLinkFromLinkEntity(entity, appConfigurations.getDomain());
+    return this.linkMapper.createLinkFromLinkEntity(entity, domain);
   }
 }
