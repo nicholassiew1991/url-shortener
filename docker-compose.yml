@@ -9,7 +9,16 @@ services:
     ports:
       - "10001:8080"
     networks:
-      - backend
+      - urlshortener
+
+  urlshortenerweb:
+    container_name: urlshortenerweb
+    build: ./client/
+    restart: always
+    ports:
+      - "10002:80"
+    networks:
+      - urlshortener
 
   mongodb:
     image: mongo:latest
@@ -18,7 +27,7 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - backend
+      - urlshortener
 
   redis:
     image: redis:latest
@@ -27,8 +36,8 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - backend
+      - urlshortener
 
 networks:
-  backend:
+  urlshortener:
     driver: bridge
