@@ -1,0 +1,15 @@
+name: CI - Backend API Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . -t url-shortener-api:$(date +%s) -t url-shortener-api:latest
