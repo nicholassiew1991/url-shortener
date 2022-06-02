@@ -1,4 +1,5 @@
-target/
+### MacOS ###
+.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
@@ -9,4 +10,9 @@ target/
 ### VS Code ###
 .vscode/
 
-.DS_Store
+### Java ###
+target/
+
+### NodeJS ###
+node_modules/
+dist/
