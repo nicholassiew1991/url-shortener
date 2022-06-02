@@ -1,6 +1,5 @@
 package io.github.nicholassiew1991.urlshortenerapi.controllers;
 
-import io.github.nicholassiew1991.urlshortenerapi.models.RedirectLinkModel;
 import io.github.nicholassiew1991.urlshortenerapi.services.LinkService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -25,13 +24,13 @@ public class HomeController {
   @GetMapping("/{code}")
   public RedirectView redirect(@PathVariable String code) {
 
-    Optional<RedirectLinkModel> optionalLink = this.linkService.getLink(code);
+    Optional<String> optionalLink = this.linkService.getLink(code);
 
     if (optionalLink.isEmpty() == true) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    return new RedirectView(optionalLink.get().getOriginalUrl());
+    return new RedirectView(optionalLink.get());
   }
 
 }
