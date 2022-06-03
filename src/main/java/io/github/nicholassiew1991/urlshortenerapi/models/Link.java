@@ -15,8 +15,6 @@ public class Link {
 
   private String code;
 
-  private String shortUrl;
-
   private String originalUrl;
 
   private LocalDateTime createdDateTime;

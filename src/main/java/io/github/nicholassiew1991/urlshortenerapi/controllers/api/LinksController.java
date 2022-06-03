@@ -24,11 +24,8 @@ public class LinksController {
 
   @PostMapping("")
   public ResponseEntity<?> createLink(@RequestBody Map<String, Object> map, HttpServletRequest httpServletRequest) {
-
-    String domain = String.format("%s://%s", httpServletRequest.getHeader("x-forwarded-scheme"), httpServletRequest.getHeader("x-forwarded-host"));
-
     String url = map.get("url").toString();
-    Link link = this.linkService.create(url, domain);
+    Link link = this.linkService.create(url);
     return new ResponseEntity<>(link, HttpStatus.CREATED);
   }
 }

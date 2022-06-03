@@ -40,10 +40,10 @@ public class LinkServiceImpl implements LinkService {
 
   @Override
   @Retry(name = "retryLinkCodeDuplicate")
-  public Link create(String originalUrl, String domain) {
+  public Link create(String originalUrl) {
     String code = this.linkCodeGenerator.generateLinkCode(5);
     LinkEntity entity = new LinkEntity(code, code, originalUrl, LocalDateTime.now(ZoneOffset.UTC));
     entity = this.linkRepository.insert(entity);
-    return this.linkMapper.createLinkFromLinkEntity(entity, domain);
+    return this.linkMapper.createLinkFromLinkEntity(entity);
   }
 }

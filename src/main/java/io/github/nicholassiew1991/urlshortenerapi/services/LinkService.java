@@ -8,5 +8,5 @@ public interface LinkService {
 
   Optional<String> getLink(String code);
 
-  Link create(String originalUrl, String domain);
+  Link create(String originalUrl);
 }

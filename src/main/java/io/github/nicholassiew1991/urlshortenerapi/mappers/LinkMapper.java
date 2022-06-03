@@ -8,10 +8,5 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface LinkMapper {
 
-  @Mapping(target = "shortUrl", expression = "java(mapShortUrl(entity, domain))")
-  Link createLinkFromLinkEntity(LinkEntity entity, String domain);
-
-  default String mapShortUrl(LinkEntity entity, String domain) {
-    return String.format("%s/%s", domain, entity.getCode());
-  }
+  Link createLinkFromLinkEntity(LinkEntity entity);
 }
