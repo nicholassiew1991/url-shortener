@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . -t url-shortener-api:$(date +%s) -t url-shortener-api:latest
+      run: docker build . -t url-shortener-api:$(date +%Y%m%d%H%M%S) -t url-shortener-api:latest
