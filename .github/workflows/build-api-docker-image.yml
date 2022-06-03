@@ -2,9 +2,6 @@ name: CI - Backend API Docker Image
 
 on:
   workflow_dispatch:
-  
-env:
-  IMAGE_TAGS: nicholassiew1991/url-shortener-api:latest,nicholassiew1991/url-shortener-api:$(date +%Y%m%d%H%M%S)
 
 jobs:
 
@@ -22,8 +19,8 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         
-    - name: Echo Env
-      run: echo $IMAGE_TAGS
-      
-    #- name: Build the Docker image
-    #  run: docker build . -t url-shortener-api:$(date +%Y%m%d%H%M%S) -t url-shortener-api:latest
+    - uses: docker/build-push-action@v3.0.0
+      name: Build and Push Docker Image
+      with:
+        push: true
+        tags: nicholassiew1991/url-shortener-api:latest
