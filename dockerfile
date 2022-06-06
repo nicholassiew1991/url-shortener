@@ -4,7 +4,7 @@ WORKDIR /code
 COPY pom.xml ./
 COPY src ./src/
 
-RUN mvn package spring-boot:repackage -DskipTests
+RUN mvn package spring-boot:repackage
 
 FROM eclipse-temurin:17-jre-alpine
 
