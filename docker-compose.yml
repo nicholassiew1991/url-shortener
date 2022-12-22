@@ -11,6 +11,23 @@ services:
     ports:
       - "10001:8080"
 
+  url-shortener-prometheus:
+    image: prom/prometheus
+    container_name: url-shortener-prometheus
+    volumes:
+      - ./deployment/prometheus/:/etc/prometheus/
+    restart: always
+    ports:
+      - "10002:9090"
+
+  url-shortener-grafana:
+    image: grafana/grafana
+    container_name: url-shortener-grafana
+    restart: always
+    ports:
+      - "10003:3000"
+
+
 networks:
   default:
     name: default_network
