@@ -1,0 +1,17 @@
+FROM eclipse-temurin:19.0.1_10-jdk-alpine AS build
+
+WORKDIR /code
+COPY .mvn ./.mvn
+COPY mvnw .
+COPY pom.xml .
+
+COPY url-shortener-webapi ./url-shortener-webapi
+
+RUN ./mvnw --projects url-shortener-webapi --also-make package spring-boot:repackage
+
+FROM eclipse-temurin:19.0.1_10-jre-alpine
+
+COPY --from=build /code/url-shortener-webapi/target/url-shortener-webapi-1.0-SNAPSHOT.jar /app/
+
+EXPOSE 8080
+ENTRYPOINT [ "java", "-jar", "/app/url-shortener-webapi-1.0-SNAPSHOT.jar"]
