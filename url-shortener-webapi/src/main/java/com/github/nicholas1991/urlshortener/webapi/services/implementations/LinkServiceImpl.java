@@ -8,6 +8,8 @@ import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LinkServiceImpl implements LinkService {
 
@@ -27,6 +29,12 @@ public class LinkServiceImpl implements LinkService {
     this.linkCodeGenerator = linkCodeGenerator;
     this.linkMapper = linkMapper;
     this.logger = logger;
+  }
+
+  @Override
+  public Optional<String> getOriginalUrl(String code) {
+    this.logger.info("Get Original Url with Code: " + code);
+    return code == null || code.isBlank() == true ? Optional.empty() : this.linkRepository.findById(code).map(Link::getOriginalUrl);
   }
 
   @Override

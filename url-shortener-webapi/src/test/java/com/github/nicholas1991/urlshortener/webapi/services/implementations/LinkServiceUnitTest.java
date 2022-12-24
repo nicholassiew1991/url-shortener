@@ -15,9 +15,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -38,6 +42,28 @@ public class LinkServiceUnitTest {
     this.linkMapper,
     this.logger
   );
+
+  public static Stream<Arguments> testGetOriginalUrl() {
+    return Stream.of(
+      Arguments.of(null, null, true),
+      Arguments.of("", null, true),
+      Arguments.of("code", null, true),
+      Arguments.of("code", new Link("code", "code", "originalUrl", LocalDateTime.now(ZoneOffset.UTC)), false)
+    );
+  }
+
+  @MethodSource
+  @ParameterizedTest
+  public void testGetOriginalUrl(String code, Link stubQueryResult, boolean expectedIsEmpty) {
+    //// Stub
+    when(linkRepository.findById(anyString())).thenReturn(Optional.ofNullable(stubQueryResult));
+
+    //// Act
+    Optional<String> optionalOriginalUrl = this.linkService.getOriginalUrl(code);
+
+    //// Assert
+    assertEquals(expectedIsEmpty, optionalOriginalUrl.isEmpty());
+  }
 
   public static Stream<Arguments> testCreate() {
     return Stream.of(
