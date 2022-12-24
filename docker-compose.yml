@@ -4,16 +4,22 @@ services:
   url-shortener-webapi:
     image: url-shortener-webapi
     container_name: url-shortener-webapi
+    depends_on:
+      - url-shortener-mongodb
     build:
       context: .
       dockerfile: ./url-shortener-webapi/dockerfile
     restart: always
     ports:
       - "10001:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://url-shortener-mongodb:27017/url_shortener
 
   url-shortener-prometheus:
     image: prom/prometheus
     container_name: url-shortener-prometheus
+    depends_on:
+      - url-shortener-webapi
     volumes:
       - ./deployment/prometheus/:/etc/prometheus/
     restart: always
@@ -23,9 +29,16 @@ services:
   url-shortener-grafana:
     image: grafana/grafana
     container_name: url-shortener-grafana
+    depends_on:
+      - url-shortener-prometheus
     restart: always
     ports:
       - "10003:3000"
+
+  url-shortener-mongodb:
+    image: mongo
+    container_name: url-shortener-mongodb
+    restart: always
 
 
 networks:
