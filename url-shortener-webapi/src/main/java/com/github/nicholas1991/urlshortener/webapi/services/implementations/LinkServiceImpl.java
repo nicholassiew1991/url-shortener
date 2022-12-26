@@ -6,6 +6,7 @@ import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapper;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkCodeGenerator;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
 import org.slf4j.Logger;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,6 +33,7 @@ public class LinkServiceImpl implements LinkService {
   }
 
   @Override
+  @Cacheable(cacheManager = "redisCacheManager", cacheNames = "originalUrl", key = "#code")
   public Optional<String> getOriginalUrl(String code) {
     this.logger.info("Get Original Url with Code: " + code);
     return code == null || code.isBlank() == true ? Optional.empty() : this.linkRepository.findById(code).map(Link::getOriginalUrl);

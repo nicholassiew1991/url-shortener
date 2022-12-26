@@ -6,6 +6,7 @@ services:
     container_name: url-shortener-webapi
     depends_on:
       - url-shortener-mongodb
+      - url-shortener-redis
     build:
       context: .
       dockerfile: ./url-shortener-webapi/dockerfile
@@ -14,6 +15,9 @@ services:
       - "10001:8080"
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://url-shortener-mongodb:27017/url_shortener
+      SPRING_DATA_REDIS_HOST: url-shortener-redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATE_REDIS_DATABASE: 0
 
   url-shortener-prometheus:
     image: prom/prometheus
@@ -38,6 +42,11 @@ services:
   url-shortener-mongodb:
     image: mongo
     container_name: url-shortener-mongodb
+    restart: always
+
+  url-shortener-redis:
+    image: redis:7.0.5-alpine
+    container_name: url-shortener-redis
     restart: always
 
 
