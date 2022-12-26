@@ -17,7 +17,7 @@ services:
       SPRING_DATA_MONGODB_URI: mongodb://url-shortener-mongodb:27017/url_shortener
       SPRING_DATA_REDIS_HOST: url-shortener-redis
       SPRING_DATA_REDIS_PORT: 6379
-      SPRING_DATE_REDIS_DATABASE: 0
+      SPRING_DATA_REDIS_DATABASE: 0
 
   url-shortener-prometheus:
     image: prom/prometheus
@@ -48,7 +48,6 @@ services:
     image: redis:7.0.5-alpine
     container_name: url-shortener-redis
     restart: always
-
 
 networks:
   default:
