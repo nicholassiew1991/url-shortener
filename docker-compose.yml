@@ -7,6 +7,7 @@ services:
     depends_on:
       - url-shortener-mongodb
       - url-shortener-redis
+      - url-shortener-rabbitmq
     build:
       context: .
       dockerfile: ./url-shortener-webapi/dockerfile
@@ -18,6 +19,10 @@ services:
       SPRING_DATA_REDIS_HOST: url-shortener-redis
       SPRING_DATA_REDIS_PORT: 6379
       SPRING_DATA_REDIS_DATABASE: 0
+      SPRING_RABBITMQ_HOST: url-shortener-rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
 
   url-shortener-prometheus:
     image: prom/prometheus
@@ -48,6 +53,13 @@ services:
     image: redis:7.0.5-alpine
     container_name: url-shortener-redis
     restart: always
+
+  url-shortener-rabbitmq:
+    image: rabbitmq:3.11.5-management-alpine
+    container_name: url-shortener-rabbitmq
+    restart: always
+    ports:
+      - "10004:15672"
 
 networks:
   default:
