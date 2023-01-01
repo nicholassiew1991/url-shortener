@@ -6,6 +6,8 @@ import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapper;
 import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapperImpl;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkCodeGenerator;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
+import com.github.nicholas1991.urlshortener.webapi.services.TaskProducer;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,13 +19,13 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class LinkServiceUnitTest {
@@ -32,6 +34,8 @@ public class LinkServiceUnitTest {
 
   private final LinkCodeGenerator linkCodeGenerator = new RandomLinkCodeGenerator();
 
+  private final TaskProducer taskProducer = mock(TaskProducer.class);
+
   private final LinkMapper linkMapper = new LinkMapperImpl();
 
   private final Logger logger = LoggerFactory.getLogger(LinkServiceUnitTest.class);
@@ -39,6 +43,7 @@ public class LinkServiceUnitTest {
   private final LinkService linkService = new LinkServiceImpl(
     this.linkRepository,
     this.linkCodeGenerator,
+    this.taskProducer,
     this.linkMapper,
     this.logger
   );
@@ -84,5 +89,14 @@ public class LinkServiceUnitTest {
     assertEquals(originalUrl, link.getOriginalUrl());
     assertNotNull(link.getCode());
     assertFalse(link.getCode().isEmpty());
+  }
+
+  @Test
+  public void testCreateRedirectRecordTask() {
+    //// Act
+    this.linkService.createRedirectRecordTask("CODE", Map.of(), Map.of());
+
+    //// Verify
+    verify(this.taskProducer, times(1)).produce(anyString(), any());
   }
 }
