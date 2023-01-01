@@ -1,9 +1,14 @@
 package com.github.nicholas1991.urlshortener.webapi.services.implementations;
 
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.Link;
+import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.RedirectRecord;
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.repositories.LinkRepository;
+import com.github.nicholas1991.urlshortener.webapi.dataaccess.repositories.RedirectRecordRepository;
 import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapper;
 import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapperImpl;
+import com.github.nicholas1991.urlshortener.webapi.mappers.RedirectRecordMapper;
+import com.github.nicholas1991.urlshortener.webapi.mappers.RedirectRecordMapperImpl;
+import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkCodeGenerator;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
 import com.github.nicholas1991.urlshortener.webapi.services.TaskProducer;
@@ -32,19 +37,25 @@ public class LinkServiceUnitTest {
 
   private final LinkRepository linkRepository = mock(LinkRepository.class);
 
+  private final RedirectRecordRepository redirectRecordRepository = mock(RedirectRecordRepository.class);
+
   private final LinkCodeGenerator linkCodeGenerator = new RandomLinkCodeGenerator();
 
   private final TaskProducer taskProducer = mock(TaskProducer.class);
 
   private final LinkMapper linkMapper = new LinkMapperImpl();
 
+  private final RedirectRecordMapper redirectRecordMapper = new RedirectRecordMapperImpl();
+
   private final Logger logger = LoggerFactory.getLogger(LinkServiceUnitTest.class);
 
   private final LinkService linkService = new LinkServiceImpl(
     this.linkRepository,
+    this.redirectRecordRepository,
     this.linkCodeGenerator,
     this.taskProducer,
     this.linkMapper,
+    this.redirectRecordMapper,
     this.logger
   );
 
@@ -98,5 +109,15 @@ public class LinkServiceUnitTest {
 
     //// Verify
     verify(this.taskProducer, times(1)).produce(anyString(), any());
+  }
+
+  @Test
+  public void testCreateRedirectRecord() {
+    //// Act
+    CreateRedirectRecordTaskDataModel data = CreateRedirectRecordTaskDataModel.of("CODE", Map.of(), null, null);
+    this.linkService.createRedirectRecord(data);
+
+    //// Verify
+    verify(this.redirectRecordRepository, times(1)).insert(any(RedirectRecord.class));
   }
 }

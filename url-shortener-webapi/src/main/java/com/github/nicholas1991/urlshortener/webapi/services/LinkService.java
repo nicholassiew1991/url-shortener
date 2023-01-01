@@ -1,6 +1,7 @@
 package com.github.nicholas1991.urlshortener.webapi.services;
 
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.Link;
+import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
 
 import java.util.Map;
 import java.util.Optional;
@@ -12,4 +13,6 @@ public interface LinkService {
   Link create(String originalUrl);
 
   void createRedirectRecordTask(String code, Map<String, String> headers, Map<String, String> queryString);
+
+  void createRedirectRecord(CreateRedirectRecordTaskDataModel data);
 }
