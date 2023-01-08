@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.rabbitmq.listeners;
+package com.github.nicholas1991.urlshortener.webapi.tasks.dispatchers;
 
 import com.github.nicholas1991.urlshortener.webapi.models.Task;
 import com.github.nicholas1991.urlshortener.webapi.services.TaskExecutor;
@@ -17,14 +17,15 @@ import java.util.stream.Stream;
 import static org.mockito.Mockito.*;
 import static org.mockito.AdditionalMatchers.*;
 
+
 @ExtendWith(MockitoExtension.class)
-public class TaskMessageQueueListenerUnitTest {
+public class TaskDispatcherUnitTest {
 
   private final BeanFactory beanFactory = mock(BeanFactory.class);
 
-  private final Logger logger = LoggerFactory.getLogger(TaskMessageQueueListener.class);
+  private final Logger logger = LoggerFactory.getLogger(TaskDispatcherImpl.class);
 
-  private final TaskMessageQueueListener listener = new TaskMessageQueueListener(beanFactory, logger);
+  private final TaskDispatcher dispatcher = new TaskDispatcherImpl(beanFactory, logger);
 
   public static Stream<Arguments> testHandleReceiveTaskMessage() {
     return Stream.of(
@@ -42,7 +43,7 @@ public class TaskMessageQueueListenerUnitTest {
     when(beanFactory.getBean(not(eq("VALID_TASK_NAME")), eq(TaskExecutor.class))).thenThrow(new NoSuchBeanDefinitionException("NoSuchBeanDefinitionException"));
 
     //// Act
-    this.listener.handleReceiveTaskMessage(new Task(taskName, taskData));
+    this.dispatcher.dispatch(new Task(taskName, taskData));
 
     //// Verify
     verify(taskExecutor, times(expectedTaskExecutedTimes)).execute(anyString());
