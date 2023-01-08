@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.constants;
+package com.github.nicholas1991.urlshortener.webapi.rabbitmq.contants;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

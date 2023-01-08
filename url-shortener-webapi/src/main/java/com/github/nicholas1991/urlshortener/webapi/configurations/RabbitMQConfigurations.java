@@ -1,7 +1,7 @@
 package com.github.nicholas1991.urlshortener.webapi.configurations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.nicholas1991.urlshortener.webapi.constants.MessageQueueNameConstants;
+import com.github.nicholas1991.urlshortener.webapi.rabbitmq.contants.MessageQueueNameConstants;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;

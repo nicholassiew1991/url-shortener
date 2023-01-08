@@ -1,6 +1,6 @@
 package com.github.nicholas1991.urlshortener.webapi.rabbitmq.listeners;
 
-import com.github.nicholas1991.urlshortener.webapi.constants.MessageQueueNameConstants;
+import com.github.nicholas1991.urlshortener.webapi.rabbitmq.contants.MessageQueueNameConstants;
 import com.github.nicholas1991.urlshortener.webapi.models.Task;
 import com.github.nicholas1991.urlshortener.webapi.services.TaskExecutor;
 import org.slf4j.Logger;

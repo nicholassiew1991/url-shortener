@@ -2,7 +2,7 @@ package com.github.nicholas1991.urlshortener.webapi.services.implementations;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.nicholas1991.urlshortener.webapi.constants.MessageQueueNameConstants;
+import com.github.nicholas1991.urlshortener.webapi.rabbitmq.contants.MessageQueueNameConstants;
 import com.github.nicholas1991.urlshortener.webapi.models.Task;
 import com.github.nicholas1991.urlshortener.webapi.services.TaskProducer;
 import org.slf4j.Logger;
