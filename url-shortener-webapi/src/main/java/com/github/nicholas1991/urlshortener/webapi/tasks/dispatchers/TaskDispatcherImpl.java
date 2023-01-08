@@ -1,7 +1,7 @@
 package com.github.nicholas1991.urlshortener.webapi.tasks.dispatchers;
 
 import com.github.nicholas1991.urlshortener.webapi.models.Task;
-import com.github.nicholas1991.urlshortener.webapi.services.TaskExecutor;
+import com.github.nicholas1991.urlshortener.webapi.tasks.executors.TaskExecutor;
 import org.slf4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
