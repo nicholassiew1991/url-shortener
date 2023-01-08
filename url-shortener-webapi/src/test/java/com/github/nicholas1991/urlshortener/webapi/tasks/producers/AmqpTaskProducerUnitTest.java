@@ -1,8 +1,7 @@
-package com.github.nicholas1991.urlshortener.webapi.services.implementations;
+package com.github.nicholas1991.urlshortener.webapi.tasks.producers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nicholas1991.urlshortener.webapi.tasks.models.Task;
-import com.github.nicholas1991.urlshortener.webapi.services.TaskProducer;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

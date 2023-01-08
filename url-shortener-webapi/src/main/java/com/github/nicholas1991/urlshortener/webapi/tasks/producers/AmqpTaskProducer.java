@@ -1,10 +1,9 @@
-package com.github.nicholas1991.urlshortener.webapi.services.implementations;
+package com.github.nicholas1991.urlshortener.webapi.tasks.producers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nicholas1991.urlshortener.webapi.rabbitmq.contants.MessageQueueNameConstants;
 import com.github.nicholas1991.urlshortener.webapi.tasks.models.Task;
-import com.github.nicholas1991.urlshortener.webapi.services.TaskProducer;
 import org.slf4j.Logger;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Service;

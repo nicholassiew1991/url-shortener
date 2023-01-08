@@ -11,7 +11,7 @@ import com.github.nicholas1991.urlshortener.webapi.mappers.RedirectRecordMapperI
 import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkCodeGenerator;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
-import com.github.nicholas1991.urlshortener.webapi.services.TaskProducer;
+import com.github.nicholas1991.urlshortener.webapi.tasks.producers.TaskProducer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

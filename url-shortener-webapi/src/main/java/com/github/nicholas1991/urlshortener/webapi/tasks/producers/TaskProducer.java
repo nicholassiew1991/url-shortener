@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.services;
+package com.github.nicholas1991.urlshortener.webapi.tasks.producers;
 
 public interface TaskProducer {
 
