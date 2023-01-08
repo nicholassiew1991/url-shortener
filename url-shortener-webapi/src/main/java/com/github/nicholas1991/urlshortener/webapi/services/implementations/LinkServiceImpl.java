@@ -1,6 +1,6 @@
 package com.github.nicholas1991.urlshortener.webapi.services.implementations;
 
-import com.github.nicholas1991.urlshortener.webapi.constants.TaskNameConstants;
+import com.github.nicholas1991.urlshortener.webapi.tasks.constants.TaskNameConstants;
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.Link;
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.RedirectRecord;
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.repositories.LinkRepository;

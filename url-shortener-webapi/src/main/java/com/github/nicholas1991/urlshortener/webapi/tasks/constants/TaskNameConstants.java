@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.constants;
+package com.github.nicholas1991.urlshortener.webapi.tasks.constants;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
