@@ -1,7 +1,7 @@
 package com.github.nicholas1991.urlshortener.webapi.rabbitmq.listeners;
 
 import com.github.nicholas1991.urlshortener.webapi.rabbitmq.contants.MessageQueueNameConstants;
-import com.github.nicholas1991.urlshortener.webapi.models.Task;
+import com.github.nicholas1991.urlshortener.webapi.tasks.models.Task;
 import com.github.nicholas1991.urlshortener.webapi.tasks.dispatchers.TaskDispatcher;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

@@ -1,6 +1,6 @@
 package com.github.nicholas1991.urlshortener.webapi.tasks.dispatchers;
 
-import com.github.nicholas1991.urlshortener.webapi.models.Task;
+import com.github.nicholas1991.urlshortener.webapi.tasks.models.Task;
 
 public interface TaskDispatcher {
 
