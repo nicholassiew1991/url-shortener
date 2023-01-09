@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.services.implementations;
+package com.github.nicholas1991.urlshortener.webapi.links.taskexecutors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
