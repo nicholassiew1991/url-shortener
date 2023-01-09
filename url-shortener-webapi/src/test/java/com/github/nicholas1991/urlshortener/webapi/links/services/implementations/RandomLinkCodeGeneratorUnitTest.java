@@ -1,6 +1,6 @@
-package com.github.nicholas1991.urlshortener.webapi.services.implementations;
+package com.github.nicholas1991.urlshortener.webapi.links.services.implementations;
 
-import com.github.nicholas1991.urlshortener.webapi.services.LinkCodeGenerator;
+import com.github.nicholas1991.urlshortener.webapi.links.services.LinkCodeGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
