@@ -1,6 +1,6 @@
 package com.github.nicholas1991.urlshortener.webapi.controllers;
 
-import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
+import com.github.nicholas1991.urlshortener.webapi.links.services.LinkService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

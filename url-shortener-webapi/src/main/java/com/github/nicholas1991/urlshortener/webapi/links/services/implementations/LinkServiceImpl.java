@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.services.implementations;
+package com.github.nicholas1991.urlshortener.webapi.links.services.implementations;
 
 import com.github.nicholas1991.urlshortener.webapi.tasks.constants.TaskNameConstants;
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.Link;
@@ -9,7 +9,7 @@ import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapper;
 import com.github.nicholas1991.urlshortener.webapi.mappers.RedirectRecordMapper;
 import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
 import com.github.nicholas1991.urlshortener.webapi.links.services.LinkCodeGenerator;
-import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
+import com.github.nicholas1991.urlshortener.webapi.links.services.LinkService;
 import com.github.nicholas1991.urlshortener.webapi.tasks.producers.TaskProducer;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;

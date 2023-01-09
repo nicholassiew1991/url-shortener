@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nicholas1991.urlshortener.webapi.tasks.constants.TaskNameConstants;
 import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
-import com.github.nicholas1991.urlshortener.webapi.services.LinkService;
+import com.github.nicholas1991.urlshortener.webapi.links.services.LinkService;
 import com.github.nicholas1991.urlshortener.webapi.tasks.executors.TaskExecutor;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
