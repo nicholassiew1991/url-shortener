@@ -1,7 +1,7 @@
 package com.github.nicholas1991.urlshortener.webapi.controllers.api;
 
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.Link;
-import com.github.nicholas1991.urlshortener.webapi.models.CreateShortUrlRequestModel;
+import com.github.nicholas1991.urlshortener.webapi.links.models.CreateShortUrlRequestModel;
 import com.github.nicholas1991.urlshortener.webapi.links.services.LinkService;
 import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;

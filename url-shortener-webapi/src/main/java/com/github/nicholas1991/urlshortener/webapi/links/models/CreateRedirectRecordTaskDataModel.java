@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.models;
+package com.github.nicholas1991.urlshortener.webapi.links.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

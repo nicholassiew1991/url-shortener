@@ -1,7 +1,7 @@
 package com.github.nicholas1991.urlshortener.webapi.mappers;
 
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.RedirectRecord;
-import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
+import com.github.nicholas1991.urlshortener.webapi.links.models.CreateRedirectRecordTaskDataModel;
 import org.bson.types.ObjectId;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

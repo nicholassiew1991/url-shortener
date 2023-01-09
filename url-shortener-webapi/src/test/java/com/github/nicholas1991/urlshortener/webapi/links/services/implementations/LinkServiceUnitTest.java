@@ -8,7 +8,7 @@ import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapper;
 import com.github.nicholas1991.urlshortener.webapi.mappers.LinkMapperImpl;
 import com.github.nicholas1991.urlshortener.webapi.mappers.RedirectRecordMapper;
 import com.github.nicholas1991.urlshortener.webapi.mappers.RedirectRecordMapperImpl;
-import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
+import com.github.nicholas1991.urlshortener.webapi.links.models.CreateRedirectRecordTaskDataModel;
 import com.github.nicholas1991.urlshortener.webapi.links.services.LinkCodeGenerator;
 import com.github.nicholas1991.urlshortener.webapi.links.services.LinkService;
 import com.github.nicholas1991.urlshortener.webapi.tasks.producers.TaskProducer;

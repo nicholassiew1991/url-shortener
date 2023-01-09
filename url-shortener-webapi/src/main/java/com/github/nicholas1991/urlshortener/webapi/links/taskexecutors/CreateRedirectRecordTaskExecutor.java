@@ -3,7 +3,7 @@ package com.github.nicholas1991.urlshortener.webapi.links.taskexecutors;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nicholas1991.urlshortener.webapi.tasks.constants.TaskNameConstants;
-import com.github.nicholas1991.urlshortener.webapi.models.CreateRedirectRecordTaskDataModel;
+import com.github.nicholas1991.urlshortener.webapi.links.models.CreateRedirectRecordTaskDataModel;
 import com.github.nicholas1991.urlshortener.webapi.links.services.LinkService;
 import com.github.nicholas1991.urlshortener.webapi.tasks.executors.TaskExecutor;
 import org.slf4j.Logger;
