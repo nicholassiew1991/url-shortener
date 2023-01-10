@@ -1,4 +1,4 @@
-package com.github.nicholas1991.urlshortener.webapi.mappers;
+package com.github.nicholas1991.urlshortener.webapi.links.mappers;
 
 import com.github.nicholas1991.urlshortener.webapi.dataaccess.entities.RedirectRecord;
 import com.github.nicholas1991.urlshortener.webapi.links.models.CreateRedirectRecordTaskDataModel;
